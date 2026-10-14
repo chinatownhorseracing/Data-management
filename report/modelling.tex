@@ -1,0 +1,110 @@
+\section{Modelling}
+
+
+\subsection*{Ex 11}
+
+\subsubsection*{Table 1: Students}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+student_id & \verb|TEXT| \\ 
+\hline
+student_firstname & \verb|TEXT| \\ 
+\hline
+student_lastname & \verb|TEXT| \\ 
+\hline
+student_email & \verb|TEXT| \\ 
+\hline
+year & \verb|INTEGER| \\ 
+\hline
+address & \verb|TEXT| \\ 
+\hline
+contact_number & \verb|TEXT| \\
+\hline
+\end{tabular}
+
+\subsubsection*{Table 2: Modules}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+module_id & \verb|TEXT| \\ 
+\hline
+module_name & \verb|TEXT| \\ 
+\hline
+leader & \verb|TEXT| \\ 
+\hline
+\end{tabular}
+
+\subsubsection*{Table 3: Exam_results}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+student_id & \verb|TEXT| \\ 
+\hline
+module_id & \verb|TEXT| \\ 
+\hline
+exam_mark & \verb|REAL| \\ 
+\hline
+\end{tabular}
+
+\subsubsection*{Table 4: Module_lecturers}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+module_id & \verb|TEXT| \\ 
+\hline
+lecturer_email & \verb|TEXT| \\ 
+\hline
+\end{tabular}
+
+\subsubsection*{Table 5: Coursework_marks}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+student_id & \verb|TEXT| \\ 
+\hline
+module_id & \verb|TEXT| \\ 
+\hline
+coursework_number & \verb|INTEGER| \\ 
+\hline
+mark & \verb|REAL| \\
+\hline
+\end{tabular}
+
+\subsubsection*{Table 6: Lecturers}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+lecturer_email & \verb|TEXT| \\ 
+\hline
+lecturer_firstname & \verb|TEXT| \\ 
+\hline
+lecturer_surname & \verb|TEXT| \\ 
+\hline
+faculty & \verb|TEXT| \\
+\hline
+\end{tabular}
+
+\subsubsection*{Table 7: Rooms}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+building & \verb|TEXT| \\ 
+\hline
+room & \verb|TEXT| \\ 
+\hline 
+capacity & \verb|INTEGER| \\ 
+\hline
+\end{tabular}
+
+\subsubsection*{Table 8: Room_lecturers}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} \\ \hline
+building & \verb|TEXT| \\ 
+\hline
+room & \verb|TEXT| \\ 
+\hline
+lecturer_email & \verb|TEXT| \\ 
+\hline
+\end{tabular}

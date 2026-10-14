@@ -1,0 +1,58 @@
+\section{Relational Model}
+
+
+\subsection*{Ex 4}
+
+\begin{itemize}
+    \item Students(student firstname, student surname, student id, student email, address, contact number, module id, module name, leader, lecturer1, lecturer2, exam mark, coursework1, coursework2, coursework3)
+    \item Faculties(faculty, building, room, capacity, lecturer email, lecturer firstname, lecturer surname)
+\end{itemize}
+
+
+\subsection*{Ex 5}
+
+The minimal Functional Dependencies are:
+
+\begin{itemize}
+
+    \item Students:
+    \begin{itemize}
+        \item student id $\rightarrow$ student firstname
+        \item student id $\rightarrow$ student surname
+        \item student id $\rightarrow$ student email
+        \item student id $\rightarrow$ year
+        \item student id $\rightarrow$ address
+        \item student id $\rightarrow$ contact number
+        \item module id $\rightarrow$ module name
+        \item module id $\rightarrow$ leader
+        \item module id $\rightarrow$ lecturer1
+        \item module id $\rightarrow$ lecturer2
+        \item student id, module id $\rightarrow$ exam mark
+        \item student id, module id $\rightarrow$ coursework1
+        \item student id, module id $\rightarrow$ coursework2
+        \item student id, module id $\rightarrow$ coursework3
+    \end{itemize}
+    
+    \item Faculties:
+    \begin{itemize}
+        \item lecturer email $\rightarrow$ lecturer firstname
+        \item lecturer email $\rightarrow$ lecturer surname
+        \item building, room $\rightarrow$ capacity
+        \item building $\rightarrow$ faculty
+    \end{itemize}
+    
+\end{itemize}
+
+
+\subsection*{Ex 6}
+
+The keys are:
+
+\begin{itemize}
+    \item Students: \underline{student id, module id}
+    \item Faculties: \underline{lecturer email, building, room}
+\end{itemize}
+
+Since on each record we have students and their respective marks for each module, student id and module id is the only candidate key that can be a primary key. The student id alone can give us information on student attributes like student firstname, student surname etc. The module id can only give information on module attributes like module name, leader etc. Only both can give this information but also information for each student’s marks on each module.
+
+With lecturer email we can only find lecturer first name and surname. With the building we can only determine the faculty it belongs to. With building and room, we can determine the capacity of any room in any building. Therefore, the only candidate key that gives us information about both the lecturer, buildings and rooms is the composite key (lecturer email, building, room) and suitable as primary key.

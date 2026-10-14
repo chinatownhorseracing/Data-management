@@ -1,0 +1,4 @@
+I used \usepackage[strings]{underscore} package in report.tex allowing
+me to use underscores for all .tex sections in standard way which normally 
+are used for special expressions. Since I didn't need those expressions I
+used this to allow underscore to display normally. 

@@ -1,0 +1,119 @@
+\section{Normalisation}
+
+\subsection*{Ex 7}
+
+\subsubsection*{Students}
+For the Students relation the data is not in First Normal Form because we have repeating groups of the same attribute. 
+For example, we have lecturer1 and lecturer2 columns. This is bad because if a new course appears with more than 2 lecturers, we have no way to represent that. We have the same issue with coursework1, coursework2, coursework3. Some courses don’t even have 3 courseworks and coursework3 is empty. Also courses with more courseworks don’t fit well with current structure.
+
+To fix this we can create a separate relation: 
+
+Module_lecturers(module_id, lecturer_email). 
+
+Now we can eliminate repeated lecturer groups and easily add more lecturers in the Module_lecturers relation, for instance if a module has 3 lecturers. Furthermore, we can create another relation for coursework marks: Coursework_marks(student_id, module_id, coursework_number, mark). This way, we get rid of the repeated coursework sets in the Students relation and now we can more easily add the marks for each student’s coursework in each module in the new relation. This dynamically adapts to courses with less than or more than 3 courseworks.
+
+After this the original Students relation would become Students(student first name, student surname, student id, student email, year, address, contact number, module id, module name, leader, exam mark). 
+
+\subsubsection*{Faculties}
+The faculties relation is in First Normal Form because it contains only atomic values (a single room, faculty, building etc. per cell). There are no lists of items inside 1 cell or repeated groups like room1, room2… Every row also identifies one unique assignment of a lecturer teaching in a specific room in a building. So, nothing needs to be changed to achieve First Normal Form.
+
+
+\subsection*{Ex 8}
+
+\subsubsection*{Students}
+The Students relation before applying Second Normal Form is Students(student firstname, student surname, student id, student email, year, address, contact number, module id, module name, leader, exam mark).
+
+
+It has the following partial-key dependencies:
+
+\begin{itemize}
+    \item student id $\rightarrow$ student firstname
+    \item student id $\rightarrow$ student surname
+    \item student id $\rightarrow$ student email
+    \item student id $\rightarrow$ year
+    \item student id $\rightarrow$ address
+    \item student id $\rightarrow$ contact number
+    \item module id $\rightarrow$ module name
+    \item module id $\rightarrow$ leader
+\end{itemize}
+
+We have 2 sets of partial-key dependencies: 1 depending on student id, the other depending on module id. 
+Therefore, we can create separate relations for students, modules and remove them from the original relation. To avoid confusion the original relation should be renamed Exam_results as it contains information on student id, module id, and exam mark while the Students table will only contain student information.
+
+After separating the student data and module data from the original relation into separate ones, this gives us the following relations:
+
+\begin{itemize}
+    \item Students(student id, student firstname, student surname, student email, year, address, contact number) 
+    \item Modules(module id, module name, leader)
+    \item Exam_results(student id, module id, exam mark) 
+\end{itemize}
+
+For the Students relation the data types are student id: text (in case leading zeroes), student firstname: text, student surname: text, student email: text, year: integer, address: text, contact number: text (as it contains symbols like parantheses, +, -). The primary key is student id, which uniquely identifies each student and their attributes.
+
+For the Modules relation the data types are module id: text, module name: text, leader: text. The primary key is module id which determines each unique module and its name, leader.
+
+For the Exam_results relation the types are student id: text, module id: text, exam mark: real. The primary key is a composite key (student id, module id) identifying the exam mark for each student for each module.
+
+When converting the data into First Normal Form we also created the relations:
+
+\begin{itemize}
+    \item Module_lecturers(module_id, lecturer_email) 
+    \item Coursework_marks(student_id, module_id, coursework_number, mark)  
+\end{itemize}
+
+For Module_lecturers the data types are module_id: text, lecturer_email: text and the primary key is the composite key (module_id, lecturer_email).
+
+For Coursework_marks relation the data types are student_id: text, module_id: text, coursework_number: integer, mark: real. The primary key is the composite key (student_id, module_id, coursework_number).
+
+These don’t have any partial key dependencies and don’t need to be decomposed into Second Normal Form as they already respect it, therefore we have now successfully decomposed the original Students table into Second Normal Form, and each attribute depends on a single unique key.
+
+\subsubsection*{Faculties}
+
+The Faculties relation has the following partial-key dependencies:
+
+\begin{itemize}
+    \item lecturer_email $\rightarrow$ lecturer_firstname
+    \item lecturer_email $\rightarrow$ lecturer_lastname
+    \item lecturer_email $\rightarrow$ faculty
+    \item building, room $\rightarrow$ capacity
+\end{itemize}
+
+We can see 2 sets of partial-key dependencies, one for the lecturer_email key and one for the (building, room) composite key. And we can rename the Faculties relation Room_lecturers as after separating the partial-key dependencies it only contains building, room lecturer. It  will store new records each time a lecturer teaches in a room. Therefore, we can create a separate relation for lecturers, and one for the rooms and their attributes.
+
+This gives us the following relations:
+
+\begin{itemize}
+    \item Lecturers(lecturer_email, lecturer_firstname, lecturer_surname, faculty)
+    \item Rooms(building, room, capacity)
+    \item Room_lecturers(building, room, lecturer_email)
+\end{itemize}
+
+The data types for the Lecturers relation are lecturer_email: text, lecturer_firstname: text, lecturer_surname: text, faculty: text. The primary key is lecturer_email, determining all other attributes for each unique lecturer.
+
+For the Rooms relation the data types are building: text, room: text, capacity: integer. The primary key is a composite key (building, room) which uniquely identifies each room on the University of Northeasthampton’s campus and its capacity.
+
+For the Room_lecturers relation the data types are building: text, room: text, lecturer_email: text. The primary key is a composite key (building, room, lecturer_email) which identifies each new instance of a lecturer teaching in a room on campus.
+
+
+\subsection*{Ex 9}
+
+\subsubsection*{Relation 1}
+After decomposing into Second Normal Form there are no transitive dependencies. All non-key attributes depend solely on the primary/composite key and on nothing else. Therefore, they are in Third Normal Form as well.
+
+For the Students relation, student_firstname, student_surname, student_email, year, address, contact_number can only be determined using the primary key student_id.
+
+In the Modules relation, module_name and leader depend only on the primary key module_id and can’t be determined by anything else.
+In the Exam_results each new record of a student’s exam result contains  their id (student_id), the module the exam was for (module_id) and the mark (exam_mark). There are no non-key attributes and no transitive dependencies.
+
+The Module_lecturers(module_id, lecturer_email) relation which we created during First Normal Form has no non-key attributes and thus no transitive dependencies.
+
+The Coursework_marks relation created at the same time has composite key (student_id, module_id, coursework_number) and non-key attribute mark dependent only on this composite key.
+
+\subsubsection*{Relation 2}
+This relation that we decomposed into Second Normal Form also doesn’t have any transitive dependencies and it’s already in Third Normal Form as well. No non-key attributes depend on anything other than the primary/composite key.
+
+For the Lecturers relation, lecturer_firstname, lecturer_surname, faculty depend only on the primary key lecturer_email and on nothing else.
+
+In the Rooms relation the capacity depends solely on the composite key (building, room) and can’t be determined by other information.
+
+In the Room_lecturers(building, room, lecturer_email) relation there are no non-key attributes so no transitive dependencies either.
